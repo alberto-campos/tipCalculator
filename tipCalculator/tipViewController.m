@@ -25,10 +25,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    
+    
     if (self) {
         // Custom initialization
-        self.title = @"Tip Calculator";
+        self.title = @"Tip calculator";
     }
+    
     return self;
 }
 
@@ -36,8 +40,9 @@
 {
     [super viewDidLoad];
     [self updateValues];
-    
+    [self.billTextField becomeFirstResponder];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+
     
 }
 
@@ -55,6 +60,8 @@
 - (void)updateValues {
     float billAmount = [self.billTextField.text floatValue];
     
+    
+    
     NSArray *tipValues = @[@(0.1), @(0.15), @(0.2)];
     float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
     
@@ -67,4 +74,21 @@
 - (void)onSettingsButton {
     [self.navigationController pushViewController:[[SettingsViewController alloc] init] animated:YES];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"view will appear");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"view did appear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"view will disappear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"view will disappear");
+}
+
 @end
