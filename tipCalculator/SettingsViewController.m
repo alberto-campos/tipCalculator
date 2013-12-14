@@ -23,6 +23,11 @@
 @end
 
 @implementation SettingsViewController
+@synthesize scrollView;
+@synthesize guestsTextField;
+@synthesize minTipTextField;
+@synthesize avgTipTextField;
+@synthesize maxTipTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,12 +40,49 @@
 
 - (void)viewDidLoad
 {
+    
+    // UIScroll View settings
+    scrollView.scrollEnabled = YES;
+    scrollView.contentSize = CGSizeMake(320, 800);
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(onResetButton)];
+    
+    // setting up the keyboard
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+    
 }
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+    {
+        // iPhone 5 height = 560
+        [self.view setFrame:CGRectMake(0, -80, 320, 560)];
+    }
+    else
+    {
+        [self.view setFrame:CGRectMake(0, -80, 320, 460)];
+    }
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification
+{
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+    {
+        [self.view setFrame:CGRectMake(0, 20, 320, 560)];
+    }
+    else
+    {
+        [self.view setFrame:CGRectMake(0,20,320,460)];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

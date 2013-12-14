@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
+- (IBAction)editingChanged:(id)sender;
 
 - (IBAction)onTap:(id)sender;
 - (void)updateValues;
@@ -50,6 +51,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)editingChanged:(id)sender {    
+    [self updateValues];
 }
 
 - (IBAction)onTap:(id)sender {
@@ -90,5 +95,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     NSLog(@"view will disappear");
 }
+
+
 
 @end
