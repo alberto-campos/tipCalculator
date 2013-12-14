@@ -103,10 +103,12 @@
 
 - (void) onUpdateDefaults
 {
+    
+    // read values from screen
     int guestsAvg = [self.guestsTextField.text intValue];
-    float minTip = [self.minTipTextField.text floatValue]/100;
-    float avgTip = [self.avgTipTextField.text floatValue]/100;
-    float maxTip = [self.maxTipTextField.text floatValue]/100;
+    float minTip = [self.minTipTextField.text floatValue];
+    float avgTip = [self.avgTipTextField.text floatValue];
+    float maxTip = [self.maxTipTextField.text floatValue];
     
     NSString *s = @"";
     
@@ -114,9 +116,16 @@
     s = [s stringByAppendingString:@" guests. "];
     s = [s stringByAppendingString: [NSString stringWithFormat:@"%0.2f", minTip]];
     s = [s stringByAppendingString:@" percentage"];
-
     
     self.resultsLabel.text = s;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:guestsAvg forKey:@"guestsAvg"];
+    [defaults setFloat:minTip forKey:@"minTip"];
+    [defaults setFloat:avgTip forKey:@"avgTip"];
+    [defaults setFloat:maxTip forKey:@"maxTip"];
+    [defaults synchronize];
+    NSLog(@"Defaults saved correctly.");
     
 }
 

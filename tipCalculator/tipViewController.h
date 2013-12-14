@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface tipViewController : UIViewController
+//flag to denote if this is first time the app is run
+@property(nonatomic) BOOL firstRun;
 
 @end

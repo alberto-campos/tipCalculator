@@ -18,10 +18,14 @@
 
 - (IBAction)onTap:(id)sender;
 - (void)updateValues;
+- (void)readDefaults;
+- (void)checkFirstRun;
+- (void)setFactoryValues;
 
 @end
 
 @implementation tipViewController
+@synthesize firstRun = _firstRun;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,22 +43,45 @@
 
 - (void)viewDidLoad
 {
+    
+    
     [super viewDidLoad];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"TipCalcFirstLaunch"])
+    {
+        // Welcome back.
+        self.view.backgroundColor = [UIColor blueColor];
+    }
+    else
+    {
+        // First time.
+        self.view.backgroundColor = [UIColor redColor];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TipCalcFirstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    
+    [self checkFirstRun];
     [self updateValues];
     [self.billTextField becomeFirstResponder];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
-
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+    
+    [self readDefaults];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)editingChanged:(id)sender {    
     [self updateValues];
+}
+
+- (void)checkFirstRun {
+    
+
 }
 
 - (IBAction)onTap:(id)sender {
@@ -73,7 +100,7 @@
     float totalAmount = tipAmount + billAmount;
     
     self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount ];
-    self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
+    //self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
 }
 
 - (void)onSettingsButton {
@@ -96,6 +123,25 @@
     NSLog(@"view will disappear");
 }
 
+- (void)readDefaults {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int guestsAvg = [defaults integerForKey:@"guestsAvg"];
+    float minTip = [defaults floatForKey:@"minTip"];
+    float avgTip = [defaults floatForKey:@"avgTip"];
+    float maxTip = [defaults floatForKey:@"maxTip"];
+    NSLog(@"Defaults read correctly.");
 
+}
 
+- (void)setFactoryValues
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1 forKey:@"guestsAvg"];
+    [defaults setFloat:10 forKey:@"minTip"];
+    [defaults setFloat:15 forKey:@"avgTip"];
+    [defaults setFloat:18 forKey:@"maxTip"];
+    [defaults synchronize];
+    NSLog(@"Defaults saved correctly.");
+    
+}
 @end
