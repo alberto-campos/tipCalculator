@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface tipViewController : UIViewController
-//flag to denote if this is first time the app is run
+//flag to denote if this is first time the app is running
 @property(nonatomic) BOOL firstRun;
 
-// array accessible to all methods in this view
-//extern NSArray *tipValues;
 @end

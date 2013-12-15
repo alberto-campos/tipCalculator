@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A6A6F83185D2DC9004A36B8 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6A6F81185D2DC9004A36B8 /* minus.png */; };
-		5A6A6F84185D2DC9004A36B8 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6A6F82185D2DC9004A36B8 /* plus.png */; };
+		5A91E163185DC79D00752059 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A91E161185DC79D00752059 /* minus.png */; };
+		5A91E164185DC79D00752059 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A91E162185DC79D00752059 /* plus.png */; };
 		5A9A1C4F1850461900FFACBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C4E1850461900FFACBD /* Foundation.framework */; };
 		5A9A1C511850461900FFACBD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C501850461900FFACBD /* CoreGraphics.framework */; };
 		5A9A1C531850461900FFACBD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C521850461900FFACBD /* UIKit.framework */; };
@@ -39,8 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A6A6F81185D2DC9004A36B8 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = tipCalculatorTests/minus.png; sourceTree = SOURCE_ROOT; };
-		5A6A6F82185D2DC9004A36B8 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = tipCalculatorTests/plus.png; sourceTree = SOURCE_ROOT; };
+		5A91E161185DC79D00752059 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
+		5A91E162185DC79D00752059 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		5A9A1C4B1850461900FFACBD /* tipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9A1C4E1850461900FFACBD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A9A1C501850461900FFACBD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,8 +143,8 @@
 		5A9A1C551850461900FFACBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5A6A6F81185D2DC9004A36B8 /* minus.png */,
-				5A6A6F82185D2DC9004A36B8 /* plus.png */,
+				5A91E161185DC79D00752059 /* minus.png */,
+				5A91E162185DC79D00752059 /* plus.png */,
 				5A9A1C561850461900FFACBD /* tipCalculator-Info.plist */,
 				5A9A1C571850461900FFACBD /* InfoPlist.strings */,
 				5A9A1C5A1850461900FFACBD /* main.m */,
@@ -250,7 +250,9 @@
 				5A9A1C591850461900FFACBD /* InfoPlist.strings in Resources */,
 				5A9A1C611850461900FFACBD /* Images.xcassets in Resources */,
 				5A9A1C811850481B00FFACBD /* tipViewController.xib in Resources */,
+				5A91E163185DC79D00752059 /* minus.png in Resources */,
 				5A9A1C8618505C5C00FFACBD /* SettingsViewController.xib in Resources */,
+				5A91E164185DC79D00752059 /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A6A6F83185D2DC9004A36B8 /* minus.png in Resources */,
 				5A9A1C721850461A00FFACBD /* InfoPlist.strings in Resources */,
-				5A6A6F84185D2DC9004A36B8 /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

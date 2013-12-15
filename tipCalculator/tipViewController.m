@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UISlider *guestsSlider;
 
 - (IBAction)guestsSlider:(id)sender;
-
+- (void)updateGuestsLabel;
 
 
 - (IBAction)editingChanged:(id)sender;
@@ -63,7 +63,7 @@
     {
         // Welcome back.
         self.view.backgroundColor = [UIColor whiteColor];
-        [self readUserDefaults];
+        [self updateValues];
     }
     else
     {
@@ -72,12 +72,16 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TipCalcFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+        [self.billTextField becomeFirstResponder];
         [self setFactoryValues];
     }
     
+    GlobalVariables *myBill = [GlobalVariables singleObj];
+    myBill.globalStr = @"0.00";
+    
     [self updateValues];
     
-    [self.billTextField becomeFirstResponder];
+    
     
 }
 
@@ -87,8 +91,13 @@
 }
 
 - (IBAction)guestsSlider:(id)sender {
+    [self updateGuestsLabel];
+    [self.view endEditing:YES];
+    [self updateValues];
+}
+
+- (void)updateGuestsLabel{
     int guestsAvg = self.guestsSlider.value;
-    // float minTip = [self.minTipTextField.text floatValue];
     
     NSString *s = @"";
     
@@ -99,12 +108,7 @@
         s = [s stringByAppendingString:@"s"];
     }
     
-    // s = [s stringByAppendingString: [NSString stringWithFormat:@"%0.2f", minTip]];
-    // s = [s stringByAppendingString:@" percentage"];
-    
     guestsLabel.text = s;
-    [self.view endEditing:YES];
-    [self updateValues];
 }
 
 - (IBAction)editingChanged:(id)sender {    
@@ -120,32 +124,38 @@
 
 - (void)updateValues {
     
-    int maxSlidersValue = 6;
-    
-    // TODO: Read tip values from a global array
-    GlobalVariables* myVar = [GlobalVariables singleObj];
-    NSString *searchStr = myVar.globalStr;
+    // TODO: Read bill values from a global variable
+    //GlobalVariables* myVar = [GlobalVariables singleObj];
+   // NSString *billStr = myVar.globalStr;
     
     
+    // local variables
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int guestsAvg = [defaults integerForKey:@"guestsAvg"];
     float minTip = [defaults integerForKey:@"minTip"];
     float avgTip = [defaults integerForKey:@"avgTip"];
     float maxTip = [defaults integerForKey:@"maxTip"];
+    int guestsAvg = guestsSlider.value;
     
-    // Update control values
-    [self.tipControl setTitle:[defaults stringForKey:@"minTip"] forSegmentAtIndex:0];
-    [self.tipControl setTitle:[defaults stringForKey:@"avgTip"] forSegmentAtIndex:1];
-    [self.tipControl setTitle:[defaults stringForKey:@"maxTip"] forSegmentAtIndex:2];
     
+    // Composite variables
     NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
     
+    // Update control values
+    //[self.tipControl setTitle:[defaults stringForKey:@"minTip"] forSegmentAtIndex:0];
+    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", minTip] forSegmentAtIndex:0];
+    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
+    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
+    //[self.tipControl setTitle:[defaults stringForKey:@"avgTip"] forSegmentAtIndex:1];
+    //[self.tipControl setTitle:[defaults stringForKey:@"maxTip"] forSegmentAtIndex:2];
+    
+    
+    
     float billAmount = [self.billTextField.text floatValue];
-    int nbrGuests = self.guestsSlider.value;
+   // int nbrGuests = self.guestsSlider.value;
     
     float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-    float tipPerGuest = billAmount / nbrGuests * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-    float totalPerGuest = (billAmount / nbrGuests) + tipPerGuest;
+    float tipPerGuest = billAmount / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+    float totalPerGuest = (billAmount / guestsAvg) + tipPerGuest;
     float totalAmount = billAmount + tipAmount;
     
     // Populate labels
@@ -160,16 +170,27 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"view will appear");
+    // retrieve customer's bill amouunt
+    GlobalVariables* myBill = [GlobalVariables singleObj];
+    NSString *searchStr = myBill.globalStr;
+    
+    [self updateValues];
+    self.billTextField.text = searchStr;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    guestsSlider.value = [defaults integerForKey:@"guestsAvg"];
+    [self updateGuestsLabel];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self updateValues];
     NSLog(@"view did appear");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"view will disappear");
+    // preserve customer's bill amount
+    GlobalVariables *myBill = [GlobalVariables singleObj];
+    myBill.globalStr = self.billTextField.text;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
