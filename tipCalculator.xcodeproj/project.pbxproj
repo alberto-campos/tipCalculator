@@ -25,6 +25,7 @@
 		5A9A1C811850481B00FFACBD /* tipViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A9A1C7F1850481B00FFACBD /* tipViewController.xib */; };
 		5A9A1C8518505C5C00FFACBD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9A1C8318505C5C00FFACBD /* SettingsViewController.m */; };
 		5A9A1C8618505C5C00FFACBD /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A9A1C8418505C5C00FFACBD /* SettingsViewController.xib */; };
+		5AC81704185D7C9A00C881FA /* GlobalVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC81703185D7C9A00C881FA /* GlobalVariables.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		5A9A1C8218505C5C00FFACBD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		5A9A1C8318505C5C00FFACBD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5A9A1C8418505C5C00FFACBD /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		5AC81702185D7C9A00C881FA /* GlobalVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalVariables.h; sourceTree = "<group>"; };
+		5AC81703185D7C9A00C881FA /* GlobalVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalVariables.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,14 @@
 			children = (
 				5A9A1C5D1850461900FFACBD /* tipCalcAppDelegate.h */,
 				5A9A1C5E1850461900FFACBD /* tipCalcAppDelegate.m */,
+				5A9A1C7D1850481B00FFACBD /* tipViewController.h */,
+				5A9A1C7E1850481B00FFACBD /* tipViewController.m */,
+				5A9A1C7F1850481B00FFACBD /* tipViewController.xib */,
+				5A9A1C8218505C5C00FFACBD /* SettingsViewController.h */,
+				5A9A1C8318505C5C00FFACBD /* SettingsViewController.m */,
+				5A9A1C8418505C5C00FFACBD /* SettingsViewController.xib */,
+				5AC81702185D7C9A00C881FA /* GlobalVariables.h */,
+				5AC81703185D7C9A00C881FA /* GlobalVariables.m */,
 				5A9A1C601850461900FFACBD /* Images.xcassets */,
 				5A9A1C551850461900FFACBD /* Supporting Files */,
 			);
@@ -138,12 +149,6 @@
 				5A9A1C571850461900FFACBD /* InfoPlist.strings */,
 				5A9A1C5A1850461900FFACBD /* main.m */,
 				5A9A1C5C1850461900FFACBD /* tipCalculator-Prefix.pch */,
-				5A9A1C7D1850481B00FFACBD /* tipViewController.h */,
-				5A9A1C7E1850481B00FFACBD /* tipViewController.m */,
-				5A9A1C7F1850481B00FFACBD /* tipViewController.xib */,
-				5A9A1C8218505C5C00FFACBD /* SettingsViewController.h */,
-				5A9A1C8318505C5C00FFACBD /* SettingsViewController.m */,
-				5A9A1C8418505C5C00FFACBD /* SettingsViewController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				5A9A1C5B1850461900FFACBD /* main.m in Sources */,
 				5A9A1C5F1850461900FFACBD /* tipCalcAppDelegate.m in Sources */,
 				5A9A1C801850481B00FFACBD /* tipViewController.m in Sources */,
+				5AC81704185D7C9A00C881FA /* GlobalVariables.m in Sources */,
 				5A9A1C8518505C5C00FFACBD /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

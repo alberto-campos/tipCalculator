@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "GlobalVariables.h"
 
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *guestsTextField;
@@ -125,7 +126,16 @@
     [defaults setFloat:avgTip forKey:@"avgTip"];
     [defaults setFloat:maxTip forKey:@"maxTip"];
     [defaults synchronize];
+    
     NSLog(@"Defaults saved correctly.");
+    
+    
+    
+        GlobalVariables *myVar = [GlobalVariables singleObj];
+        myVar.globalStr = self.guestsTextField.text;
+    NSLog(@"guests text field: ");
+    NSLog(guestsTextField.text);
+    
     
 }
 

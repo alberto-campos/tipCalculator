@@ -8,6 +8,7 @@
 
 #import "tipViewController.h"
 #import "SettingsViewController.h"
+#import "GlobalVariables.h"
 
 @interface tipViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
@@ -165,6 +166,11 @@
     NSLog(@"Defaults retrieved correctly.");
     
    //tipValues = @[@(minTip),@(avgTip),@(maxTip)];
+    
+    
+    GlobalVariables* myVar = [GlobalVariables singleObj];
+    NSString *searchStr = myVar.globalStr;
+    NSLog(searchStr);
 
 }
 
