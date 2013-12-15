@@ -11,6 +11,8 @@
 #import "GlobalVariables.h"
 
 @interface tipViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *minusSign;
+@property (strong, nonatomic) IBOutlet UIButton *plusSign;
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
@@ -21,7 +23,8 @@
 
 - (IBAction)guestsSlider:(id)sender;
 - (void)updateGuestsLabel;
-
+- (IBAction)minusSign:(id)sender;
+- (IBAction)plusSign:(id)sender;
 
 - (IBAction)editingChanged:(id)sender;
 
@@ -111,7 +114,50 @@
     guestsLabel.text = s;
 }
 
-- (IBAction)editingChanged:(id)sender {    
+- (IBAction)minusSign:(id)sender {
+    //TODO: read MIN from global variables
+    int minGuests = 1;
+    
+    if (self.guestsSlider.value > minGuests)
+    {
+//        int temp = self.guestsSlider.value;
+  //      temp = temp - 1;
+        
+        self.guestsSlider.value = self.guestsSlider.value - 1;
+        [self updateGuestsLabel];
+        
+        if (self.plusSign.enabled == FALSE) {
+            self.plusSign.enabled = TRUE;
+        }
+    }
+    else
+    {
+        self.minusSign.enabled = FALSE;
+    }
+}
+
+- (IBAction)plusSign:(id)sender {
+    //TODO: read MAX from global variables
+    int maxGuests = 12;
+
+    
+    if (self.guestsSlider.value < maxGuests)
+    {
+        self.guestsSlider.value++;
+        [self updateGuestsLabel];
+        
+        if (self.minusSign.enabled == FALSE)
+        {
+            self.minusSign.enabled = TRUE;
+        }
+    }
+    else
+    {
+        self.plusSign.enabled = FALSE;
+    }
+}
+
+- (IBAction)editingChanged:(id)sender {
     [self updateValues];
 }
 

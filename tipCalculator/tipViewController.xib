@@ -10,6 +10,8 @@
                 <outlet property="billTextField" destination="X3v-J7-3M4" id="JPO-Kd-vwY"/>
                 <outlet property="guestsLabel" destination="9Gu-hS-3Pm" id="aGY-VX-lBt"/>
                 <outlet property="guestsSlider" destination="8W3-2s-0pE" id="exY-WA-Df0"/>
+                <outlet property="minusSign" destination="LvK-l2-BW3" id="eGV-se-8Ga"/>
+                <outlet property="plusSign" destination="2Tl-lP-7KU" id="Pbk-Q2-WKF"/>
                 <outlet property="tipControl" destination="NP3-Mf-KYw" id="e9R-yL-t3v"/>
                 <outlet property="tipLabel" destination="nhe-D0-8Js" id="I50-yC-DKW"/>
                 <outlet property="totalLabel" destination="rMx-Wx-VDG" id="Muo-Ed-au7"/>
@@ -93,27 +95,35 @@
                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gu-hS-3Pm">
-                    <rect key="frame" x="44" y="62" width="256" height="21"/>
+                    <rect key="frame" x="57" y="69" width="212" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="8W3-2s-0pE">
-                    <rect key="frame" x="42" y="84" width="234" height="34"/>
+                    <rect key="frame" x="60" y="89" width="201" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="guestsSlider:" destination="-1" eventType="valueChanged" id="Gld-jL-0Jy"/>
                     </connections>
                 </slider>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plus.png" translatesAutoresizingMaskIntoConstraints="NO" id="iCJ-ry-eUf">
-                    <rect key="frame" x="277" y="81" width="38" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tl-lP-7KU">
+                    <rect key="frame" x="263" y="77" width="45" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="minus.png" translatesAutoresizingMaskIntoConstraints="NO" id="xQA-bB-rxM">
-                    <rect key="frame" x="5" y="81" width="38" height="34"/>
+                    <state key="normal" title="Button" image="plus.png"/>
+                    <connections>
+                        <action selector="plusSign:" destination="-1" eventType="touchUpInside" id="IEr-ST-R6A"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LvK-l2-BW3">
+                    <rect key="frame" x="9" y="77" width="45" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
+                    <state key="normal" title="Button" image="minus.png"/>
+                    <connections>
+                        <action selector="minusSign:" destination="-1" eventType="touchUpInside" id="KI8-JP-4qN"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
@@ -130,7 +140,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="minus.png" width="420" height="420"/>
-        <image name="plus.png" width="420" height="420"/>
+        <image name="minus.png" width="48" height="48"/>
+        <image name="plus.png" width="48" height="48"/>
     </resources>
 </document>
