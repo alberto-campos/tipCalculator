@@ -61,6 +61,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [self loadUserValues];
+    [self updateSliderValues];
     
 }
 
@@ -193,8 +194,11 @@
 }
 
 
+
 - (void)viewWillDisappear:(BOOL)animated {
     [self onUpdateDefaults];
 }
+
+
 
 @end

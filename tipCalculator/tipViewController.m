@@ -141,18 +141,12 @@
     NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
     
     // Update control values
-    //[self.tipControl setTitle:[defaults stringForKey:@"minTip"] forSegmentAtIndex:0];
     [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", minTip] forSegmentAtIndex:0];
     [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
     [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
-    //[self.tipControl setTitle:[defaults stringForKey:@"avgTip"] forSegmentAtIndex:1];
-    //[self.tipControl setTitle:[defaults stringForKey:@"maxTip"] forSegmentAtIndex:2];
-    
     
     
     float billAmount = [self.billTextField.text floatValue];
-   // int nbrGuests = self.guestsSlider.value;
-    
     float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
     float tipPerGuest = billAmount / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
     float totalPerGuest = (billAmount / guestsAvg) + tipPerGuest;
@@ -172,10 +166,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     // retrieve customer's bill amouunt
     GlobalVariables* myBill = [GlobalVariables singleObj];
-    NSString *searchStr = myBill.globalStr;
+    NSString *billStrValue = myBill.globalStr;
     
     [self updateValues];
-    self.billTextField.text = searchStr;
+    self.billTextField.text = billStrValue;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     guestsSlider.value = [defaults integerForKey:@"guestsAvg"];
