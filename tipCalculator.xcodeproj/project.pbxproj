@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A6A6F83185D2DC9004A36B8 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6A6F81185D2DC9004A36B8 /* minus.png */; };
+		5A6A6F84185D2DC9004A36B8 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A6A6F82185D2DC9004A36B8 /* plus.png */; };
 		5A9A1C4F1850461900FFACBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C4E1850461900FFACBD /* Foundation.framework */; };
 		5A9A1C511850461900FFACBD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C501850461900FFACBD /* CoreGraphics.framework */; };
 		5A9A1C531850461900FFACBD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C521850461900FFACBD /* UIKit.framework */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A6A6F81185D2DC9004A36B8 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = minus.png; path = tipCalculatorTests/minus.png; sourceTree = SOURCE_ROOT; };
+		5A6A6F82185D2DC9004A36B8 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = tipCalculatorTests/plus.png; sourceTree = SOURCE_ROOT; };
 		5A9A1C4B1850461900FFACBD /* tipCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tipCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9A1C4E1850461900FFACBD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A9A1C501850461900FFACBD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +132,8 @@
 		5A9A1C551850461900FFACBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5A6A6F81185D2DC9004A36B8 /* minus.png */,
+				5A6A6F82185D2DC9004A36B8 /* plus.png */,
 				5A9A1C561850461900FFACBD /* tipCalculator-Info.plist */,
 				5A9A1C571850461900FFACBD /* InfoPlist.strings */,
 				5A9A1C5A1850461900FFACBD /* main.m */,
@@ -247,7 +253,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6A6F83185D2DC9004A36B8 /* minus.png in Resources */,
 				5A9A1C721850461A00FFACBD /* InfoPlist.strings in Resources */,
+				5A6A6F84185D2DC9004A36B8 /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +474,7 @@
 				5A9A1C791850461A00FFACBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A9A1C7A1850461A00FFACBD /* Build configuration list for PBXNativeTarget "tipCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +483,7 @@
 				5A9A1C7C1850461A00FFACBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

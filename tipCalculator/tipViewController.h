@@ -12,4 +12,6 @@
 //flag to denote if this is first time the app is run
 @property(nonatomic) BOOL firstRun;
 
+// array accessible to all methods in this view
+//extern NSArray *tipValues;
 @end

@@ -13,19 +13,28 @@
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (strong, nonatomic) IBOutlet UILabel *totalPerGuestLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
+@property (strong, nonatomic) IBOutlet UILabel *guestsLabel;
+@property (strong, nonatomic) IBOutlet UISlider *guestsSlider;
+
+- (IBAction)guestsSlider:(id)sender;
+
+
+
 - (IBAction)editingChanged:(id)sender;
 
 - (IBAction)onTap:(id)sender;
 - (void)updateValues;
-- (void)readDefaults;
-- (void)checkFirstRun;
+- (void)readUserDefaults;
 - (void)setFactoryValues;
 
 @end
 
 @implementation tipViewController
 @synthesize firstRun = _firstRun;
+@synthesize guestsLabel;
+@synthesize guestsSlider;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,27 +56,28 @@
     
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"TipCalcFirstLaunch"])
     {
         // Welcome back.
-        self.view.backgroundColor = [UIColor blueColor];
+        self.view.backgroundColor = [UIColor whiteColor];
+        [self readUserDefaults];
     }
     else
     {
-        // First time.
+        // First time app launch.
         self.view.backgroundColor = [UIColor redColor];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"TipCalcFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self setFactoryValues];
     }
     
-    
-    [self checkFirstRun];
     [self updateValues];
+    
     [self.billTextField becomeFirstResponder];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
-    
-    [self readDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,14 +85,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)guestsSlider:(id)sender {
+    int guestsAvg = self.guestsSlider.value;
+    // float minTip = [self.minTipTextField.text floatValue];
+    
+    NSString *s = @"";
+    
+    s =[NSString stringWithFormat:@"%d", guestsAvg ];
+    s = [s stringByAppendingString:@" guest"];
+    
+    if (guestsAvg != 1) {
+        s = [s stringByAppendingString:@"s"];
+    }
+    
+    // s = [s stringByAppendingString: [NSString stringWithFormat:@"%0.2f", minTip]];
+    // s = [s stringByAppendingString:@" percentage"];
+    
+    guestsLabel.text = s;
+    [self.view endEditing:YES];
+    [self updateValues];
+}
+
 - (IBAction)editingChanged:(id)sender {    
     [self updateValues];
 }
 
-- (void)checkFirstRun {
-    
 
-}
 
 - (IBAction)onTap:(id)sender {
     [self.view endEditing:YES];
@@ -90,17 +118,22 @@
 }
 
 - (void)updateValues {
-    float billAmount = [self.billTextField.text floatValue];
-    
-    
     
     NSArray *tipValues = @[@(0.1), @(0.15), @(0.2)];
+    
+    float billAmount = [self.billTextField.text floatValue];
+    int nbrGuests = self.guestsSlider.value;
+    
     float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+    float tipPerGuest = billAmount / nbrGuests * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+    float totalPerGuest = (billAmount / nbrGuests) + tipPerGuest;
+    float totalAmount = billAmount + tipAmount;
     
-    float totalAmount = tipAmount + billAmount;
+    // Populate labels
+    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f per guest", tipPerGuest ];
+    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f per guest", totalPerGuest ];
+    self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount ];
     
-    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount ];
-    //self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
 }
 
 - (void)onSettingsButton {
@@ -123,13 +156,15 @@
     NSLog(@"view will disappear");
 }
 
-- (void)readDefaults {
+- (void)readUserDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int guestsAvg = [defaults integerForKey:@"guestsAvg"];
     float minTip = [defaults floatForKey:@"minTip"];
     float avgTip = [defaults floatForKey:@"avgTip"];
     float maxTip = [defaults floatForKey:@"maxTip"];
-    NSLog(@"Defaults read correctly.");
+    NSLog(@"Defaults retrieved correctly.");
+    
+   //tipValues = @[@(minTip),@(avgTip),@(maxTip)];
 
 }
 
@@ -137,11 +172,13 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:1 forKey:@"guestsAvg"];
-    [defaults setFloat:10 forKey:@"minTip"];
-    [defaults setFloat:15 forKey:@"avgTip"];
-    [defaults setFloat:18 forKey:@"maxTip"];
+    [defaults setFloat:0.10 forKey:@"minTip"];
+    [defaults setFloat:0.15 forKey:@"avgTip"];
+    [defaults setFloat:0.20 forKey:@"maxTip"];
     [defaults synchronize];
-    NSLog(@"Defaults saved correctly.");
+    NSLog(@"Values set to factory values.");
+    
+   // tipValues = @[@(0.1), @(0.15), @(0.2)];
     
 }
 @end
