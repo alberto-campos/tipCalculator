@@ -17,9 +17,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
 - (IBAction)resetButton:(id)sender;
 
+- (IBAction)resetToFactory:(id)sender;
 
 - (IBAction)onTap:(id)sender;
 - (void) onUpdateDefaults;
+- (void) resetToFactory;
 
 @end
 
@@ -48,8 +50,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(onResetButton)];
     
     // setting up the keyboard
     
@@ -80,7 +80,7 @@
     }
     else
     {
-        [self.view setFrame:CGRectMake(0,20,320,460)];
+        [self.view setFrame:CGRectMake(0, 20,320,460)];
     }
 }
 
@@ -92,8 +92,15 @@
 }
 - (void)onResetButton {
     [self.navigationController pushViewController:[[SettingsViewController alloc] init] animated:YES];
+    [self resetToFactory];
 }
 - (IBAction)resetButton:(id)sender {
+    [self resetToFactory];
+}
+
+- (IBAction)resetToFactory:(id)sender {
+    
+    [self resetToFactory];
 }
 
 - (IBAction)onTap:(id)sender {
@@ -107,9 +114,9 @@
     
     // read values from screen
     int guestsAvg = [self.guestsTextField.text intValue];
-    float minTip = [self.minTipTextField.text floatValue];
-    float avgTip = [self.avgTipTextField.text floatValue];
-    float maxTip = [self.maxTipTextField.text floatValue];
+    int minTip = [self.minTipTextField.text intValue];
+    int avgTip = [self.avgTipTextField.text intValue];
+    int maxTip = [self.maxTipTextField.text intValue];
     
     NSString *s = @"";
     
@@ -122,19 +129,45 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:guestsAvg forKey:@"guestsAvg"];
-    [defaults setFloat:minTip forKey:@"minTip"];
-    [defaults setFloat:avgTip forKey:@"avgTip"];
-    [defaults setFloat:maxTip forKey:@"maxTip"];
+    [defaults setInteger:minTip forKey:@"minTip"];
+    [defaults setInteger:avgTip forKey:@"avgTip"];
+    [defaults setInteger:maxTip forKey:@"maxTip"];
     [defaults synchronize];
     
     NSLog(@"Defaults saved correctly.");
     
     
-    
-        GlobalVariables *myVar = [GlobalVariables singleObj];
-        myVar.globalStr = self.guestsTextField.text;
+    //TODO: Read default values from a global array (1, 10%, 15%, 20%)
+    GlobalVariables *myVar = [GlobalVariables singleObj];
+    myVar.globalStr = self.guestsTextField.text;
     NSLog(@"guests text field: ");
     NSLog(guestsTextField.text);
+    
+    
+}
+
+- (void) resetToFactory
+{
+    
+    // read values from screen
+    self.guestsTextField.text = @"1";
+    self.minTipTextField.text = @"10999";
+    self.avgTipTextField.text = @"15";
+    self.maxTipTextField.text = @"20";
+    
+    
+   
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:1 forKey:@"guestsAvg"];
+    [defaults setInteger:10 forKey:@"minTip"];
+    [defaults setInteger:15 forKey:@"avgTip"];
+    [defaults setInteger:20 forKey:@"maxTip"];
+    [defaults synchronize];
+    
+    NSLog(@"Values reset to factory.");
+    
+    
     
     
 }

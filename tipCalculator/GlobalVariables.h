@@ -12,6 +12,7 @@
     
     NSString *globalStr;
     
+    
 }
 
 @property(nonatomic, strong) NSString *globalStr;

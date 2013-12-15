@@ -120,7 +120,25 @@
 
 - (void)updateValues {
     
-    NSArray *tipValues = @[@(0.1), @(0.15), @(0.2)];
+    int maxSlidersValue = 6;
+    
+    // TODO: Read tip values from a global array
+    GlobalVariables* myVar = [GlobalVariables singleObj];
+    NSString *searchStr = myVar.globalStr;
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int guestsAvg = [defaults integerForKey:@"guestsAvg"];
+    float minTip = [defaults integerForKey:@"minTip"];
+    float avgTip = [defaults integerForKey:@"avgTip"];
+    float maxTip = [defaults integerForKey:@"maxTip"];
+    
+    // Update control values
+    [self.tipControl setTitle:[defaults stringForKey:@"minTip"] forSegmentAtIndex:0];
+    [self.tipControl setTitle:[defaults stringForKey:@"avgTip"] forSegmentAtIndex:1];
+    [self.tipControl setTitle:[defaults stringForKey:@"maxTip"] forSegmentAtIndex:2];
+    
+    NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
     
     float billAmount = [self.billTextField.text floatValue];
     int nbrGuests = self.guestsSlider.value;
@@ -146,6 +164,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [self updateValues];
     NSLog(@"view did appear");
 }
 
@@ -158,19 +177,7 @@
 }
 
 - (void)readUserDefaults {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int guestsAvg = [defaults integerForKey:@"guestsAvg"];
-    float minTip = [defaults floatForKey:@"minTip"];
-    float avgTip = [defaults floatForKey:@"avgTip"];
-    float maxTip = [defaults floatForKey:@"maxTip"];
-    NSLog(@"Defaults retrieved correctly.");
-    
-   //tipValues = @[@(minTip),@(avgTip),@(maxTip)];
-    
-    
-    GlobalVariables* myVar = [GlobalVariables singleObj];
-    NSString *searchStr = myVar.globalStr;
-    NSLog(searchStr);
+  
 
 }
 
@@ -178,13 +185,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:1 forKey:@"guestsAvg"];
-    [defaults setFloat:0.10 forKey:@"minTip"];
-    [defaults setFloat:0.15 forKey:@"avgTip"];
-    [defaults setFloat:0.20 forKey:@"maxTip"];
+    [defaults setInteger:10 forKey:@"minTip"];
+    [defaults setInteger:15 forKey:@"avgTip"];
+    [defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
     NSLog(@"Values set to factory values.");
     
-   // tipValues = @[@(0.1), @(0.15), @(0.2)];
     
 }
 @end
