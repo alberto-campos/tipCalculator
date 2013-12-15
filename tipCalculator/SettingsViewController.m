@@ -56,8 +56,6 @@
     scrollView.scrollEnabled = YES;
     scrollView.contentSize = CGSizeMake(320, 800);
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
     
     // setting up the keyboard
     
@@ -116,7 +114,6 @@
 
 - (void) onUpdateDefaults
 {
-    
     // read values from screen
     int guestsAvg = guestsSlider.value;
     int minTip = [self.minTipTextField.text intValue];
@@ -130,7 +127,6 @@
     [defaults setInteger:maxTip forKey:@"maxTip"];
     [defaults synchronize];
     
-    
     [self checkDisableSigns];
     NSLog(@"Defaults saved correctly.");
         
@@ -138,15 +134,14 @@
 
 - (void) resetToFactory
 {
-    
-    // Set values to text fields
+    // Update values in text fields
     self.minTipTextField.text = @"10";
     self.avgTipTextField.text = @"15";
     self.maxTipTextField.text = @"20";
     guestsSlider.value = 1;
     guestsLabel.text = [NSString stringWithFormat:@"%1.0f guests", self.guestsSlider.value];
     
-    
+    // Store values internally
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:1 forKey:@"guestsAvg"];
     [defaults setInteger:10 forKey:@"minTip"];
@@ -156,25 +151,17 @@
     
     [self checkDisableSigns];
     NSLog(@"Values reset to factory.");
-    
-    
-    
-    
 }
 
 - (IBAction)guestsSlider:(id)sender {
-    
     [self updateSliderValues];
     [self.view endEditing:YES];
-    
     [self checkDisableSigns];
-    
 }
 
 - (void)updateSliderValues
 {
     int guestsAvg = guestsSlider.value;
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:guestsAvg forKey:@"guestsAvg"];
     
@@ -203,23 +190,18 @@
 }
 
 - (IBAction)plusSign:(id)sender {
-    
-    
     //TODO: read MAX from global variables
     int maxGuests = 12;
-    
     
     if (self.guestsSlider.value < maxGuests)
     {
         self.guestsSlider.value++;
         [self updateSliderValues];
         [self checkDisableSigns];
-        //[self loadUserValues];
     }
 }
 
 - (IBAction)minusSign:(id)sender {
-    
     //TODO: read MIN from global variables
     int minGuests = 1;
     
@@ -228,17 +210,12 @@
         self.guestsSlider.value = self.guestsSlider.value - 1;
         [self updateSliderValues];
         [self checkDisableSigns];
-        //[self loadUserValues];
     }
 }
-
-
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self onUpdateDefaults];
 }
-
-
 
 - (void)checkDisableSigns
 {
@@ -266,7 +243,6 @@
     {
         self.plusSign.enabled = TRUE;
     }
-    
 }
 
 

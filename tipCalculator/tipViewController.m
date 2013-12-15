@@ -22,13 +22,12 @@
 @property (strong, nonatomic) IBOutlet UISlider *guestsSlider;
 
 - (IBAction)guestsSlider:(id)sender;
-- (void)updateGuestsLabel;
 - (IBAction)minusSign:(id)sender;
 - (IBAction)plusSign:(id)sender;
-
 - (IBAction)editingChanged:(id)sender;
-
 - (IBAction)onTap:(id)sender;
+
+- (void)updateGuestsLabel;
 - (void)updateValues;
 - (void)readUserDefaults;
 - (void)setFactoryValues;
@@ -57,8 +56,6 @@
 
 - (void)viewDidLoad
 {
-    
-    
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
@@ -80,12 +77,11 @@
         [self setFactoryValues];
     }
     
+    // preserve the user's input bill duiring session
     GlobalVariables *myBill = [GlobalVariables singleObj];
     myBill.globalStr = @"0.00";
     
     [self updateValues];
-    
-    
     
 }
 
@@ -190,19 +186,12 @@
 }
 
 - (void)updateValues {
-    
-    // TODO: Read bill values from a global variable
-    //GlobalVariables* myVar = [GlobalVariables singleObj];
-   // NSString *billStr = myVar.globalStr;
-    
-    
     // local variables
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     float minTip = [defaults integerForKey:@"minTip"];
     float avgTip = [defaults integerForKey:@"avgTip"];
     float maxTip = [defaults integerForKey:@"maxTip"];
     int guestsAvg = guestsSlider.value;
-    
     
     // Composite variables
     NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
@@ -212,7 +201,7 @@
     [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
     [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
     
-    
+    // Do the math
     float billAmount = [self.billTextField.text floatValue];
     float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
     float tipPerGuest = billAmount / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
@@ -259,8 +248,6 @@
 }
 
 - (void)readUserDefaults {
-  
-
 }
 
 - (void)setFactoryValues
@@ -271,8 +258,6 @@
     [defaults setInteger:15 forKey:@"avgTip"];
     [defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
-    NSLog(@"Values set to factory values.");
-    
-    
+    NSLog(@"Values reset to factory defaults.");
 }
 @end
