@@ -32,6 +32,7 @@
 - (void)updateValues;
 - (void)readUserDefaults;
 - (void)setFactoryValues;
+- (void)checkDisableSigns;
 
 @end
 
@@ -48,7 +49,7 @@
     
     if (self) {
         // Custom initialization
-        self.title = @"Tip calculator";
+        self.title = @"Tip Calculator";
     }
     
     return self;
@@ -97,6 +98,40 @@
     [self updateGuestsLabel];
     [self.view endEditing:YES];
     [self updateValues];
+    
+    // TODO: there is an issue when sliding the bar 'almost' to zero, the minus button does not get disabled until reaching zero.
+    [self checkDisableSigns];
+    
+}
+
+//TODO: Move to UTILS.h
+- (void)checkDisableSigns
+{
+    //TODO: read MIN and MAX from global variables
+    int minGuests = 1;
+    int maxGuests = 12;
+    
+    if (self.guestsSlider.value == minGuests)
+    {
+        self.minusSign.enabled = FALSE;
+    }
+    
+    if (self.guestsSlider.value == maxGuests)
+    {
+        self.plusSign.enabled = FALSE;
+    }
+    
+    // enable valid buttons
+    if (self.minusSign.enabled == FALSE && self.guestsSlider.value > minGuests)
+    {
+        self.minusSign.enabled = TRUE;
+    }
+    
+    if (self.plusSign.enabled == FALSE && self.guestsSlider.value < maxGuests)
+    {
+        self.plusSign.enabled = TRUE;
+    }
+    
 }
 
 - (void)updateGuestsLabel{
@@ -120,20 +155,13 @@
     
     if (self.guestsSlider.value > minGuests)
     {
-//        int temp = self.guestsSlider.value;
-  //      temp = temp - 1;
-        
         self.guestsSlider.value = self.guestsSlider.value - 1;
         [self updateGuestsLabel];
-        
-        if (self.plusSign.enabled == FALSE) {
-            self.plusSign.enabled = TRUE;
-        }
+        [self checkDisableSigns];
+        [self updateValues];
     }
-    else
-    {
-        self.minusSign.enabled = FALSE;
-    }
+    
+    
 }
 
 - (IBAction)plusSign:(id)sender {
@@ -145,15 +173,8 @@
     {
         self.guestsSlider.value++;
         [self updateGuestsLabel];
-        
-        if (self.minusSign.enabled == FALSE)
-        {
-            self.minusSign.enabled = TRUE;
-        }
-    }
-    else
-    {
-        self.plusSign.enabled = FALSE;
+        [self checkDisableSigns];
+        [self updateValues];
     }
 }
 
@@ -199,9 +220,9 @@
     float totalAmount = billAmount + tipAmount;
     
     // Populate labels
-    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f per guest", tipPerGuest ];
-    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f per guest", totalPerGuest ];
-    self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount ];
+    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f tip per guest.", tipPerGuest ];
+    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f total bill per guest.", totalPerGuest ];
+    self.totalLabel.text = [NSString stringWithFormat:@"(tip $%0.2f) $%0.2f",tipAmount ,totalAmount ];
     
 }
 

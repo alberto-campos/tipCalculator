@@ -17,6 +17,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *avgTipTextField;
 @property (strong, nonatomic) IBOutlet UITextField *maxTipTextField;
 @property (strong, nonatomic) IBOutlet UIButton *onResetToFactory;
+@property (strong, nonatomic) IBOutlet UIButton *plusSign;
+@property (strong, nonatomic) IBOutlet UIButton *minusSign;
 
 - (IBAction)guestsSlider:(id)sender;
 - (IBAction)onResetToFactory:(id)sender;
@@ -25,6 +27,8 @@
 - (void) onUpdateDefaults;
 - (void) resetToFactory;
 - (void)loadUserValues;
+- (IBAction)plusSign:(id)sender;
+- (IBAction)minusSign:(id)sender;
 
 @end
 
@@ -126,6 +130,8 @@
     [defaults setInteger:maxTip forKey:@"maxTip"];
     [defaults synchronize];
     
+    
+    [self checkDisableSigns];
     NSLog(@"Defaults saved correctly.");
         
 }
@@ -148,6 +154,7 @@
     [defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
     
+    [self checkDisableSigns];
     NSLog(@"Values reset to factory.");
     
     
@@ -159,6 +166,8 @@
     
     [self updateSliderValues];
     [self.view endEditing:YES];
+    
+    [self checkDisableSigns];
     
 }
 
@@ -193,12 +202,72 @@
 
 }
 
+- (IBAction)plusSign:(id)sender {
+    
+    
+    //TODO: read MAX from global variables
+    int maxGuests = 12;
+    
+    
+    if (self.guestsSlider.value < maxGuests)
+    {
+        self.guestsSlider.value++;
+        [self updateSliderValues];
+        [self checkDisableSigns];
+        //[self loadUserValues];
+    }
+}
+
+- (IBAction)minusSign:(id)sender {
+    
+    //TODO: read MIN from global variables
+    int minGuests = 1;
+    
+    if (self.guestsSlider.value > minGuests)
+    {
+        self.guestsSlider.value = self.guestsSlider.value - 1;
+        [self updateSliderValues];
+        [self checkDisableSigns];
+        //[self loadUserValues];
+    }
+}
+
 
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self onUpdateDefaults];
 }
 
+
+
+- (void)checkDisableSigns
+{
+    //TODO: read MIN and MAX from global variables
+    int minGuests = 1;
+    int maxGuests = 12;
+    
+    if (self.guestsSlider.value == minGuests)
+    {
+        self.minusSign.enabled = FALSE;
+    }
+    
+    if (self.guestsSlider.value == maxGuests)
+    {
+        self.plusSign.enabled = FALSE;
+    }
+    
+    // enable valid buttons
+    if (self.minusSign.enabled == FALSE && self.guestsSlider.value > minGuests)
+    {
+        self.minusSign.enabled = TRUE;
+    }
+    
+    if (self.plusSign.enabled == FALSE && self.guestsSlider.value < maxGuests)
+    {
+        self.plusSign.enabled = TRUE;
+    }
+    
+}
 
 
 @end
