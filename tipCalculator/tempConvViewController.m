@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 CampOS. All rights reserved.
 //
 
-#import "tipViewController.h"
+#import "tempConvViewController.h"
 #import "SettingsViewController.h"
 #import "GlobalVariables.h"
 
-@interface tipViewController ()
+@interface tempConvViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *minusSign;
 @property (strong, nonatomic) IBOutlet UIButton *plusSign;
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation tipViewController
+@implementation tempConvViewController
 @synthesize firstRun = _firstRun;
 @synthesize guestsLabel;
 @synthesize guestsSlider;
@@ -79,7 +79,7 @@
     
     // preserve the user's input bill duiring session
     GlobalVariables *myBill = [GlobalVariables singleObj];
-    myBill.globalStr = @"0.00";
+    myBill.globalStr = @"32.00";
     
     [self updateValues];
     
@@ -103,7 +103,7 @@
 //TODO: Move to UTILS.h
 - (void)checkDisableSigns
 {
-    //TODO: read MIN and MAX from global variables
+    //TODO: do not use global variables
     int minGuests = 1;
     int maxGuests = 12;
     
@@ -190,28 +190,53 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     float minTip = [defaults integerForKey:@"minTip"];
     float avgTip = [defaults integerForKey:@"avgTip"];
-    float maxTip = [defaults integerForKey:@"maxTip"];
+   // float maxTip = [defaults integerForKey:@"maxTip"];
     int guestsAvg = guestsSlider.value;
     
     // Composite variables
-    NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
+   // NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
+    NSArray *tipValues = @[@(minTip/100), @(avgTip/100) ];
     
     // Update control values
-    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", minTip] forSegmentAtIndex:0];
-    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
-    [self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
+    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", minTip] forSegmentAtIndex:0];
+    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
+    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
     
     // Do the math
-    float billAmount = [self.billTextField.text floatValue];
-    float tipAmount = billAmount * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-    float tipPerGuest = billAmount / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-    float totalPerGuest = (billAmount / guestsAvg) + tipPerGuest;
-    float totalAmount = billAmount + tipAmount;
+    float tempEntered = [self.billTextField.text floatValue];
     
+    // if 0, then convert to Celcius else to Fahrenheit
+    int tempType = self.tipControl.selectedSegmentIndex;
+
+    
+    float tempConverted = tempEntered * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+    float tipPerGuest = tempEntered / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+
     // Populate labels
-    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f tip per guest.", tipPerGuest ];
-    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f total bill per guest.", totalPerGuest ];
-    self.totalLabel.text = [NSString stringWithFormat:@"(tip $%0.2f) $%0.2f",tipAmount ,totalAmount ];
+    //self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f tip per guest.", tipPerGuest ];
+    //self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f total bill per guest.", totalPerGuest ];
+    //self.totalLabel.text = [NSString stringWithFormat:@"(tip $%0.2f) $%0.2f",tempConverted ,totalAmount ];
+    
+    
+    
+    if (tempType == 1) {
+        
+        // °C  x  9/5 + 32 = °F
+        // User requested Fahrenheit
+        tempConverted = (tempEntered * 9 / 5 ) + 32;
+        self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.", tempConverted ];
+        self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempEntered ];
+    }
+    else
+    {
+        // (°F  -  32)  x  5/9 = °C
+        // User requested Celcius
+        tempConverted = (tempEntered - 32) * 5 / 9;
+        self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.",  tempEntered];
+        self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempConverted ];
+    }
+    
+    
     
 }
 
@@ -220,7 +245,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // retrieve customer's bill amouunt
+    // retrieve entered temperature
     GlobalVariables* myBill = [GlobalVariables singleObj];
     NSString *billStrValue = myBill.globalStr;
     
@@ -253,10 +278,10 @@
 - (void)setFactoryValues
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:1 forKey:@"guestsAvg"];
-    [defaults setInteger:10 forKey:@"minTip"];
-    [defaults setInteger:15 forKey:@"avgTip"];
-    [defaults setInteger:20 forKey:@"maxTip"];
+    [defaults setInteger:32 forKey:@"guestsAvg"];
+    [defaults setInteger:-100 forKey:@"minTip"];
+    [defaults setInteger:200 forKey:@"avgTip"];
+   // [defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
     NSLog(@"Values reset to factory defaults.");
 }

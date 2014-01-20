@@ -118,13 +118,13 @@
     int guestsAvg = guestsSlider.value;
     int minTip = [self.minTipTextField.text intValue];
     int avgTip = [self.avgTipTextField.text intValue];
-    int maxTip = [self.maxTipTextField.text intValue];
+   // int maxTip = [self.maxTipTextField.text intValue];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:guestsAvg forKey:@"guestsAvg"];
     [defaults setInteger:minTip forKey:@"minTip"];
     [defaults setInteger:avgTip forKey:@"avgTip"];
-    [defaults setInteger:maxTip forKey:@"maxTip"];
+    //[defaults setInteger:maxTip forKey:@"maxTip"];
     [defaults synchronize];
     
     [self checkDisableSigns];
@@ -135,18 +135,18 @@
 - (void) resetToFactory
 {
     // Update values in text fields
-    self.minTipTextField.text = @"10";
-    self.avgTipTextField.text = @"15";
-    self.maxTipTextField.text = @"20";
-    guestsSlider.value = 1;
-    guestsLabel.text = [NSString stringWithFormat:@"%1.0f guests", self.guestsSlider.value];
+    self.minTipTextField.text = @"Celcius";
+    self.avgTipTextField.text = @"Fahrenheit";
+    //self.maxTipTextField.text = @"20";
+    guestsSlider.value = 32;
+    //guestsLabel.text = [NSString stringWithFormat:@"%1.0f guests", self.guestsSlider.value];
     
     // Store values internally
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:1 forKey:@"guestsAvg"];
     [defaults setInteger:10 forKey:@"minTip"];
     [defaults setInteger:15 forKey:@"avgTip"];
-    [defaults setInteger:20 forKey:@"maxTip"];
+    //[defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
     
     [self checkDisableSigns];
@@ -184,7 +184,7 @@
     // Populate boxes
     minTipTextField.text = [defaults stringForKey:@"minTip"];
     avgTipTextField.text = [defaults stringForKey:@"avgTip"];
-    maxTipTextField.text = [defaults stringForKey:@"maxTip"];
+    //maxTipTextField.text = [defaults stringForKey:@"maxTip"];
     guestsSlider.value = [defaults integerForKey:@"guestsAvg"];
 
 }

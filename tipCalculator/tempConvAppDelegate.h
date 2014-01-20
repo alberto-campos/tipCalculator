@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tipCalcAppDelegate : UIResponder <UIApplicationDelegate>
+@interface tempConvAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

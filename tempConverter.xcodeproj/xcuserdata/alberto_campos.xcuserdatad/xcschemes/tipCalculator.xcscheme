@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A9A1C4A1850461900FFACBD"
                BuildableName = "tipCalculator.app"
-               BlueprintName = "tipCalculator"
-               ReferencedContainer = "container:tipCalculator.xcodeproj">
+               BlueprintName = "tempConverter"
+               ReferencedContainer = "container:tempConverter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5A9A1C651850461A00FFACBD"
                BuildableName = "tipCalculatorTests.xctest"
-               BlueprintName = "tipCalculatorTests"
-               ReferencedContainer = "container:tipCalculator.xcodeproj">
+               BlueprintName = "tempConverterTests"
+               ReferencedContainer = "container:tempConverter.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A9A1C4A1850461900FFACBD"
             BuildableName = "tipCalculator.app"
-            BlueprintName = "tipCalculator"
-            ReferencedContainer = "container:tipCalculator.xcodeproj">
+            BlueprintName = "tempConverter"
+            ReferencedContainer = "container:tempConverter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A9A1C4A1850461900FFACBD"
             BuildableName = "tipCalculator.app"
-            BlueprintName = "tipCalculator"
-            ReferencedContainer = "container:tipCalculator.xcodeproj">
+            BlueprintName = "tempConverter"
+            ReferencedContainer = "container:tempConverter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5A9A1C4A1850461900FFACBD"
             BuildableName = "tipCalculator.app"
-            BlueprintName = "tipCalculator"
-            ReferencedContainer = "container:tipCalculator.xcodeproj">
+            BlueprintName = "tempConverter"
+            ReferencedContainer = "container:tempConverter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

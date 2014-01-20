@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 CampOS. All rights reserved.
 //
 
-#import "tipCalcAppDelegate.h"
-#import "tipViewController.h"
+#import "tempConvAppDelegate.h"
+#import "tempConvViewController.h"
 #import "SettingsViewController.h"
 
 
-@implementation tipCalcAppDelegate
+@implementation tempConvAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    tipViewController *vc = [[tipViewController alloc] init];
+    tempConvViewController *vc = [[tempConvViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nvc;
     
