@@ -32,6 +32,8 @@
 - (void)readUserDefaults;
 - (void)setFactoryValues;
 - (void)checkDisableSigns;
+- (void)changeCelcius;
+- (void)changeFahrenheit;
 
 @end
 
@@ -48,7 +50,7 @@
     
     if (self) {
         // Custom initialization
-        self.title = @"Tip Calculator";
+        self.title = @"Temperature Converter";
     }
     
     return self;
@@ -58,7 +60,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"TipCalcFirstLaunch"])
     {
@@ -78,8 +80,8 @@
     }
     
     // preserve the user's input bill duiring session
-    GlobalVariables *myBill = [GlobalVariables singleObj];
-    myBill.globalStr = @"32.00";
+//    GlobalVariables *myBill = [GlobalVariables singleObj];
+//    myBill.globalStr = @"32.00";
     
     [self updateValues];
     
@@ -91,12 +93,12 @@
 }
 
 - (IBAction)guestsSlider:(id)sender {
-    [self updateGuestsLabel];
-    [self.view endEditing:YES];
-    [self updateValues];
-    
-    // TODO: there is an issue when sliding the bar 'almost' to zero, the minus button does not get disabled until reaching zero.
-    [self checkDisableSigns];
+//    [self updateGuestsLabel];
+//    [self.view endEditing:YES];
+//    [self updateValues];
+//    
+//    // TODO: there is an issue when sliding the bar 'almost' to zero, the minus button does not get disabled until reaching zero.
+//    [self checkDisableSigns];
     
 }
 
@@ -104,74 +106,78 @@
 - (void)checkDisableSigns
 {
     //TODO: do not use global variables
-    int minGuests = 1;
-    int maxGuests = 12;
-    
-    if (self.guestsSlider.value == minGuests)
-    {
-        self.minusSign.enabled = FALSE;
-    }
-    
-    if (self.guestsSlider.value == maxGuests)
-    {
-        self.plusSign.enabled = FALSE;
-    }
-    
-    // enable valid buttons
-    if (self.minusSign.enabled == FALSE && self.guestsSlider.value > minGuests)
-    {
-        self.minusSign.enabled = TRUE;
-    }
-    
-    if (self.plusSign.enabled == FALSE && self.guestsSlider.value < maxGuests)
-    {
-        self.plusSign.enabled = TRUE;
-    }
-    
+//    int minGuests = 1;
+//    int maxGuests = 12;
+//    
+//    if (self.guestsSlider.value == minGuests)
+//    {
+//        self.minusSign.enabled = FALSE;
+//    }
+//    
+//    if (self.guestsSlider.value == maxGuests)
+//    {
+//        self.plusSign.enabled = FALSE;
+//    }
+//    
+//    // enable valid buttons
+//    if (self.minusSign.enabled == FALSE && self.guestsSlider.value > minGuests)
+//    {
+//        self.minusSign.enabled = TRUE;
+//    }
+//    
+//    if (self.plusSign.enabled == FALSE && self.guestsSlider.value < maxGuests)
+//    {
+//        self.plusSign.enabled = TRUE;
+//    }
+//    
 }
 
 - (void)updateGuestsLabel{
-    int guestsAvg = self.guestsSlider.value;
+//    int guestsAvg = self.guestsSlider.value;
+//    
+//    NSString *s = @"";
+//    
+//    s =[NSString stringWithFormat:@"%d", guestsAvg ];
+//    s = [s stringByAppendingString:@" guest"];
+//    
+//    if (guestsAvg != 1) {
+//        s = [s stringByAppendingString:@"s"];
+//    }
+//    
+//    guestsLabel.text = s;
     
-    NSString *s = @"";
+    // self.guestsSlider.value;
     
-    s =[NSString stringWithFormat:@"%d", guestsAvg ];
-    s = [s stringByAppendingString:@" guest"];
     
-    if (guestsAvg != 1) {
-        s = [s stringByAppendingString:@"s"];
-    }
-    
-    guestsLabel.text = s;
 }
 
 - (IBAction)minusSign:(id)sender {
     //TODO: read MIN from global variables
-    int minGuests = 1;
-    
-    if (self.guestsSlider.value > minGuests)
-    {
-        self.guestsSlider.value = self.guestsSlider.value - 1;
-        [self updateGuestsLabel];
-        [self checkDisableSigns];
-        [self updateValues];
-    }
-    
+//    int minGuests = 1;
+//    
+//    if (self.guestsSlider.value > minGuests)
+//    {
+//        self.guestsSlider.value = self.guestsSlider.value - 1;
+//        [self updateGuestsLabel];
+//        [self checkDisableSigns];
+//        [self updateValues];
+//    }
+//    
     
 }
 
 - (IBAction)plusSign:(id)sender {
     //TODO: read MAX from global variables
-    int maxGuests = 12;
-
-    
-    if (self.guestsSlider.value < maxGuests)
-    {
-        self.guestsSlider.value++;
-        [self updateGuestsLabel];
-        [self checkDisableSigns];
-        [self updateValues];
-    }
+//    int maxGuests = 200;
+//
+//    
+//    if (self.guestsSlider.value < maxGuests)
+//    {
+//        self.guestsSlider.value++;
+//        [self updateGuestsLabel];
+//        [self checkDisableSigns];
+//        [self updateValues];
+//    }
 }
 
 - (IBAction)editingChanged:(id)sender {
@@ -187,53 +193,32 @@
 
 - (void)updateValues {
     // local variables
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    float minTip = [defaults integerForKey:@"minTip"];
-    float avgTip = [defaults integerForKey:@"avgTip"];
+  //  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  //  float minTip = [defaults integerForKey:@"minTip"];
+  //  float avgTip = [defaults integerForKey:@"avgTip"];
    // float maxTip = [defaults integerForKey:@"maxTip"];
-    int guestsAvg = guestsSlider.value;
+   // int guestsAvg = guestsSlider.value;
     
     // Composite variables
    // NSArray *tipValues = @[@(minTip/100), @(avgTip/100), @(maxTip/100) ];
-    NSArray *tipValues = @[@(minTip/100), @(avgTip/100) ];
+   // NSArray *tipValues = @[@(minTip/100), @(avgTip/100) ];
     
-    // Update control values
-    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", minTip] forSegmentAtIndex:0];
-    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", avgTip] forSegmentAtIndex:1];
-    //[self.tipControl setTitle: [NSString stringWithFormat:@"%1.0f%%", maxTip] forSegmentAtIndex:2];
-    
-    // Do the math
-    float tempEntered = [self.billTextField.text floatValue];
+
+
     
     // if 0, then convert to Celcius else to Fahrenheit
     int tempType = self.tipControl.selectedSegmentIndex;
 
     
-    float tempConverted = tempEntered * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-    float tipPerGuest = tempEntered / guestsAvg * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
-
-    // Populate labels
-    //self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f tip per guest.", tipPerGuest ];
-    //self.totalPerGuestLabel.text = [NSString stringWithFormat:@"$%0.2f total bill per guest.", totalPerGuest ];
-    //self.totalLabel.text = [NSString stringWithFormat:@"(tip $%0.2f) $%0.2f",tempConverted ,totalAmount ];
-    
-    
-    
+    //float tempConverted;
+    //= tempEntered * [tipValues[self.tipControl.selectedSegmentIndex] floatValue];
+  
     if (tempType == 1) {
-        
-        // °C  x  9/5 + 32 = °F
-        // User requested Fahrenheit
-        tempConverted = (tempEntered * 9 / 5 ) + 32;
-        self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.", tempConverted ];
-        self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempEntered ];
+        [self changeCelcius];
     }
     else
     {
-        // (°F  -  32)  x  5/9 = °C
-        // User requested Celcius
-        tempConverted = (tempEntered - 32) * 5 / 9;
-        self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.",  tempEntered];
-        self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempConverted ];
+        [self changeFahrenheit];
     }
     
     
@@ -264,8 +249,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     // preserve customer's bill amount
-    GlobalVariables *myBill = [GlobalVariables singleObj];
-    myBill.globalStr = self.billTextField.text;
+//    GlobalVariables *myBill = [GlobalVariables singleObj];
+//    myBill.globalStr = self.billTextField.text;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -279,10 +264,39 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:32 forKey:@"guestsAvg"];
-    [defaults setInteger:-100 forKey:@"minTip"];
+    [defaults setInteger:-200 forKey:@"minTip"];
     [defaults setInteger:200 forKey:@"avgTip"];
    // [defaults setInteger:20 forKey:@"maxTip"];
     [defaults synchronize];
     NSLog(@"Values reset to factory defaults.");
 }
+
+- (void)changeCelcius
+{
+    // (°F  -  32)  x  5/9 = °C
+    // User requested Celcius
+    
+    float tempEntered = [self.billTextField.text floatValue];
+    
+    float tempConverted = (tempEntered - 32) * 5 / 9;
+    self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.",  tempEntered];
+    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempConverted ];
+    
+    // Set to Celcius value
+    self.guestsSlider.value = tempEntered;
+}
+-(void)changeFahrenheit
+{
+    // °C  x  9/5 + 32 = °F
+    // User requested Fahrenheit
+    
+    float tempEntered = [self.billTextField.text floatValue];
+    float tempConverted = (tempEntered * 9 / 5 ) + 32;
+    
+    self.tipLabel.text = [NSString stringWithFormat:@"%g fahrenheit.", tempConverted ];
+    self.totalPerGuestLabel.text = [NSString stringWithFormat:@"%g celcius.", tempEntered ];
+    
+    self.guestsSlider.value = tempConverted;
+}
+
 @end
