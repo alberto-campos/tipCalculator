@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A4BC2E8185E2D210060B0FC /* excel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4BC2E5185E2D210060B0FC /* excel.png */; };
-		5A4BC2E9185E2D210060B0FC /* good.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4BC2E6185E2D210060B0FC /* good.png */; };
-		5A4BC2EA185E2D210060B0FC /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4BC2E7185E2D210060B0FC /* ok.png */; };
-		5A4BC2ED185E2EAE0060B0FC /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4BC2EB185E2EAE0060B0FC /* minus.png */; };
-		5A4BC2EE185E2EAE0060B0FC /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4BC2EC185E2EAE0060B0FC /* plus.png */; };
+		5A4C3621188E5E770033618C /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C361F188E5E770033618C /* fire.png */; };
+		5A4C3622188E5E770033618C /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C3620188E5E770033618C /* snow.png */; };
+		5A4C3624188E5FE50033618C /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C3623188E5FE50033618C /* thermometer.png */; };
+		5A4C3628188E64BC0033618C /* thermometerCold.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C3625188E64BC0033618C /* thermometerCold.jpg */; };
+		5A4C3629188E64BC0033618C /* thermometerHot.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C3626188E64BC0033618C /* thermometerHot.jpg */; };
+		5A4C362A188E64BC0033618C /* thermometerWarm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C3627188E64BC0033618C /* thermometerWarm.jpg */; };
+		5A4C362C188E675C0033618C /* thermometerHorizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A4C362B188E675C0033618C /* thermometerHorizontal.png */; };
 		5A9A1C4F1850461900FFACBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C4E1850461900FFACBD /* Foundation.framework */; };
 		5A9A1C511850461900FFACBD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C501850461900FFACBD /* CoreGraphics.framework */; };
 		5A9A1C531850461900FFACBD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9A1C521850461900FFACBD /* UIKit.framework */; };
@@ -42,11 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A4BC2E5185E2D210060B0FC /* excel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = excel.png; sourceTree = "<group>"; };
-		5A4BC2E6185E2D210060B0FC /* good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = good.png; sourceTree = "<group>"; };
-		5A4BC2E7185E2D210060B0FC /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
-		5A4BC2EB185E2EAE0060B0FC /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
-		5A4BC2EC185E2EAE0060B0FC /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		5A4C361F188E5E770033618C /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		5A4C3620188E5E770033618C /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		5A4C3623188E5FE50033618C /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
+		5A4C3625188E64BC0033618C /* thermometerCold.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thermometerCold.jpg; sourceTree = "<group>"; };
+		5A4C3626188E64BC0033618C /* thermometerHot.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thermometerHot.jpg; sourceTree = "<group>"; };
+		5A4C3627188E64BC0033618C /* thermometerWarm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thermometerWarm.jpg; sourceTree = "<group>"; };
+		5A4C362B188E675C0033618C /* thermometerHorizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometerHorizontal.png; sourceTree = "<group>"; };
 		5A9A1C4B1850461900FFACBD /* tempConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tempConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A9A1C4E1850461900FFACBD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5A9A1C501850461900FFACBD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,11 +153,13 @@
 		5A9A1C551850461900FFACBD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5A4BC2EB185E2EAE0060B0FC /* minus.png */,
-				5A4BC2EC185E2EAE0060B0FC /* plus.png */,
-				5A4BC2E5185E2D210060B0FC /* excel.png */,
-				5A4BC2E6185E2D210060B0FC /* good.png */,
-				5A4BC2E7185E2D210060B0FC /* ok.png */,
+				5A4C3625188E64BC0033618C /* thermometerCold.jpg */,
+				5A4C362B188E675C0033618C /* thermometerHorizontal.png */,
+				5A4C3626188E64BC0033618C /* thermometerHot.jpg */,
+				5A4C3627188E64BC0033618C /* thermometerWarm.jpg */,
+				5A4C3623188E5FE50033618C /* thermometer.png */,
+				5A4C361F188E5E770033618C /* fire.png */,
+				5A4C3620188E5E770033618C /* snow.png */,
 				5A9A1C561850461900FFACBD /* tempConverter-Info.plist */,
 				5A9A1C571850461900FFACBD /* InfoPlist.strings */,
 				5A9A1C5A1850461900FFACBD /* main.m */,
@@ -256,15 +262,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A4BC2ED185E2EAE0060B0FC /* minus.png in Resources */,
+				5A4C3628188E64BC0033618C /* thermometerCold.jpg in Resources */,
+				5A4C362C188E675C0033618C /* thermometerHorizontal.png in Resources */,
+				5A4C3621188E5E770033618C /* fire.png in Resources */,
+				5A4C3624188E5FE50033618C /* thermometer.png in Resources */,
+				5A4C3622188E5E770033618C /* snow.png in Resources */,
 				5A9A1C591850461900FFACBD /* InfoPlist.strings in Resources */,
-				5A4BC2EE185E2EAE0060B0FC /* plus.png in Resources */,
 				5A9A1C611850461900FFACBD /* Images.xcassets in Resources */,
 				5A9A1C811850481B00FFACBD /* tempConvViewController.xib in Resources */,
-				5A4BC2E9185E2D210060B0FC /* good.png in Resources */,
-				5A4BC2EA185E2D210060B0FC /* ok.png in Resources */,
+				5A4C362A188E64BC0033618C /* thermometerWarm.jpg in Resources */,
+				5A4C3629188E64BC0033618C /* thermometerHot.jpg in Resources */,
 				5A9A1C8618505C5C00FFACBD /* SettingsViewController.xib in Resources */,
-				5A4BC2E8185E2D210060B0FC /* excel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
